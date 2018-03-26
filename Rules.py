@@ -32,7 +32,14 @@ class Rules(object):
 							self.__punctuations.append(punctuation)
 					prev_char = char
 
-		print self.__definitions
-		print self.__expressions
-		print self.__keywords
-		print self.__punctuations
+		def get_definitions(self):
+			return self.__definitions
+
+		def get_expressions(self):
+			return self.__expressions
+
+		def get_keywords(self):
+			return self.__keywords
+
+		def get_punctuations(self):
+			return self.__punctuations
