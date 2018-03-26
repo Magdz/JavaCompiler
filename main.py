@@ -24,7 +24,8 @@ for key in tokens_dict:
 	assert len(nfa_stack) == 1
 	nfa_dict[key] = nfa_stack.pop()
 
-
+nfa_test = nfa_dict['id']
+print nfa_test.match(['letter', 'digit', 'letter'])
 
 # print expressions
 # print rules.get_definitions()
