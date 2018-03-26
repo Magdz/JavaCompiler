@@ -39,7 +39,6 @@ class Rules(object):
 		expressions = self.__expressions
 		for key in expressions:
 			expression = expressions[key]
-			print expression
 			symbols = re.split(r"(\\\(|\(|\\\)|\)|\\\||\||\\\.|\.|\\\*|\*|\\\+|\+|\ )", expression)
 			expressionArray = [symbol for symbol in symbols if symbol != '' and symbol != ' ']
 			expressions[key] = expressionArray
