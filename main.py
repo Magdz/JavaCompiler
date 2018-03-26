@@ -22,7 +22,9 @@ for key in tokens_dict:
 	for token in tokens:
 		handler.handlers[token.name](token, nfa_stack)
 	assert len(nfa_stack) == 1
-	nfa_dict[key] = nfa_stack.pop()
+	nfa = nfa_stack.pop()
+	nfa.set_key(key)
+	nfa_dict[key] = nfa
 
 nfa_test = nfa_dict['id']
 print nfa_test.match(['letter', 'digit', 'letter'])

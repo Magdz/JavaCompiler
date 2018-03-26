@@ -5,6 +5,10 @@ class NFA(object):
 		self.start = start
 		self.end = end
 		end.is_end = True
+		self.key = True
+
+	def set_key(self, key):
+		self.key = key
 
 	def add_state(self, state, states_set):
 		if state in states_set:
@@ -25,5 +29,5 @@ class NFA(object):
 			current_states = next_states
 		for state in current_states:
 			if state.is_end:
-				return True
+				return self.key
 		return False
