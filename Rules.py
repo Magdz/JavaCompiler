@@ -38,9 +38,9 @@ class Rules(object):
 	def __split_expressions(self):
 		expressions = self.__expressions
 		for key in expressions:
-			expression = expressions[key].replace(' ', '')
-			symbols = re.split(r"(\(|\)|\||\.|\*|\+)", expression)
-			expressionArray = [symbol for symbol in symbols if symbol != '']
+			expression = expressions[key]
+			symbols = re.split(r"(\(|\)|\||\.|\*|\+|\ )", expression)
+			expressionArray = [symbol for symbol in symbols if symbol != '' and symbol != ' ']
 			expressions[key] = expressionArray
 		self.__expressions = expressions
 
