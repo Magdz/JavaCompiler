@@ -1,3 +1,4 @@
+import re
 
 class Rules(object):
 
@@ -6,7 +7,9 @@ class Rules(object):
 		self.__expressions = {}
 		self.__keywords = []
 		self.__punctuations = []
+
 		self.__import(filename)
+		self.__split_expressions()
 
 	def __import(self, filename):
 		with open(filename, 'r') as file:
@@ -31,6 +34,15 @@ class Rules(object):
 							punctuation = punctuation.strip('[]\n\\')
 							self.__punctuations.append(punctuation)
 					prev_char = char
+
+	def __split_expressions(self):
+		expressions = self.__expressions
+		for key in expressions:
+			expression = expressions[key].replace(' ', '')
+			symbols = re.split(r"(\(|\)|\||\.|\*|\+)", expression)
+			expressionArray = [symbol for symbol in symbols if symbol != '']
+			expressions[key] = expressionArray
+		self.__expressions = expressions
 
 	def get_definitions(self):
 		return self.__definitions

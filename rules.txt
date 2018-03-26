@@ -6,7 +6,7 @@ id:letter(letter|digit)*
 num: digit+ | digit+.digits(\L|E digits)
 
 relop: \=\= | !\= | > | >\= | < | <\=
-assign: \=
+assign: =
 addop: \+ | -
 mulop: \* | /
 
