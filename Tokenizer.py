@@ -23,7 +23,13 @@ class Tokenizer(object):
 			return Token('NONE', '')
 
 	def parse(self):
-		pass
+		print self.part
+		print self.expression
+		if self.part.name == 'ALT':
+			token = self.part
+			self.part = self.get_token()
+			self.parse()
+			self.tokens.append(token)
 
 	def get_tokens(self):
 		return self.tokens()
