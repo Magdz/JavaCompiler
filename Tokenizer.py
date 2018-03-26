@@ -53,4 +53,4 @@ class Tokenizer(object):
 			self.part = self.get_token()
 
 	def get_tokens(self):
-		return self.tokens()
+		return self.tokens

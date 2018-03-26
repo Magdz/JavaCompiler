@@ -1,7 +1,7 @@
 
 class NFA(object):
 
-	def __init__(self, key, expression):
-		self._key = key
-		print key
-		print expression
+	def __init__(self, start, end):
+		self.start = start
+		self.end = end
+		end.is_end = True
