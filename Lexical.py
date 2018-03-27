@@ -6,17 +6,18 @@ from DefHandler import DefHandler
 from DefTokenizer import DefTokenizer
 
 class Lexical(object):
-	def __init__(self, rules, code):
-		rules = Rules('rules.txt')
-
-		self.expressions = rules.get_expressions()
-		self.definitions = rules.get_definitions()
-		self.keywords = rules.get_keywords()
-		self.punctuations = rules.get_punctuations()
+	def __init__(self, rules, code = None):
+		self.rules = Rules('rules.txt')
+		self.expressions = self.rules.get_expressions()
+		self.definitions = self.rules.get_definitions()
+		self.keywords = self.rules.get_keywords()
+		self.punctuations = self.rules.get_punctuations()
 
 		self.insert_definitions_to_expressions(self.definitions, self.expressions)
 		self.def_dict = self.expand_definitions(self.definitions)
 		self.nfa = self.expressions_to_nfa(self.expressions)
+		if code:
+			self.tokens = self.analize(code)
 
 
 	def insert_definitions_to_expressions(self, definitions, expressions):
@@ -77,3 +78,42 @@ class Lexical(object):
 
 		nfa = handler.combine(nfa_dict)
 		return nfa
+
+	def analize(self, codefile):
+		return self.__analize(codefile, self.punctuations, self.keywords, self.def_dict, self.nfa)
+
+	def __analize(self, codefile, punctuations, keywords, definitions, nfa):
+		tokens = []
+		word = ''
+		char_types = []
+		with open(codefile, 'r') as file:
+			for line in file:
+				for char in line:
+					if char in punctuations:
+						if len(char_types) > 0:
+							tokens.append(nfa.match(char_types))
+							word = ''
+							char_types = []
+						tokens.append(char)
+					elif char is ' ':
+						if len(char_types) > 0:
+							tokens.append(nfa.match(char_types))
+							word = ''
+							char_types = []
+					else:
+						word += char
+						for key in definitions:
+							definition = definitions[key]
+							if char in definition:
+								char_types.append(key)
+					if word in keywords:
+						tokens.append(word)
+						word = ''
+						char_types = []
+					else:
+						match = nfa.match([word])
+						if match:
+							tokens.append(match)
+							word = ''
+							char_types = []
+		return tokens
