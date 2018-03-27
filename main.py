@@ -16,6 +16,16 @@ for key in expressions:
 	tokenizer = Tokenizer(expressions[key])
 	tokens = tokenizer.get_tokens()
 	tokens_dict[key] = tokens
+	print key
+	for token in tokens:
+		print token
+
+for key in definitions:
+	tokenizer = Tokenizer(definitions[key])
+	tokens = tokenizer.get_tokens()
+	print key
+	for token in tokens:
+		print token
 
 nfa_dict = {}
 handler = Handler()
@@ -30,7 +40,7 @@ for key in tokens_dict:
 
 nfa = handler.combine(nfa_dict)
 
-
+ 
 
 # nfa_test = nfa_dict['num']
 print nfa.match(['-'])
