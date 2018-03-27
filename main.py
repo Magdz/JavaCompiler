@@ -5,9 +5,13 @@ from Tokenizer import Tokenizer
 
 rules = Rules('rules.txt')
 
+expressions = rules.get_expressions()
+definitions = rules.get_definitions()
+keywords = rules.get_keywords()
+punctuations = rules.get_punctuations()
+
 tokens_dict = {}
 
-expressions =  rules.get_expressions()
 for key in expressions:
 	tokenizer = Tokenizer(expressions[key])
 	tokens = tokenizer.get_tokens()
@@ -26,10 +30,7 @@ for key in tokens_dict:
 
 nfa = handler.combine(nfa_dict)
 
+
+
 # nfa_test = nfa_dict['num']
 print nfa.match(['-'])
-
-# print expressions
-# print rules.get_definitions()
-# print rules.get_keywords()
-# print rules.get_punctuations()

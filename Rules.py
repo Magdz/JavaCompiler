@@ -21,7 +21,6 @@ class Rules(object):
 						self.__definitions[kv[0].strip(' \t\n\r')] = kv[1].strip(' \t\n\r')
 					if(char == ':' and not prev_char == '\\'):
 						kv = line.split(':')
-						# kv[1] = kv[1].replace('\\', '')
 						self.__expressions[kv[0].strip(' \t\n\r')] = kv[1].strip(' \t\n\r')
 					if(char == '{' and prev_char == None):
 						keywords = line.split(' ')
