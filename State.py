@@ -5,3 +5,4 @@ class State(object):
 		self.transitions = {}
 		self.name = name
 		self.is_end = False
+		self.key = True

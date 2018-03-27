@@ -22,12 +22,12 @@ for key in tokens_dict:
 	for token in tokens:
 		handler.handlers[token.name](token, nfa_stack)
 	assert len(nfa_stack) == 1
-	nfa = nfa_stack.pop()
-	nfa.set_key(key)
-	nfa_dict[key] = nfa
+	nfa_dict[key] = nfa_stack.pop()
 
-nfa_test = nfa_dict['id']
-print nfa_test.match(['letter', 'digit', 'letter'])
+nfa = handler.combine(nfa_dict)
+
+# nfa_test = nfa_dict['num']
+print nfa.match(['-'])
 
 # print expressions
 # print rules.get_definitions()

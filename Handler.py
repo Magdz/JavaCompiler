@@ -54,3 +54,13 @@ class Handler(object):
 		nfa1.end.is_end = False
 		nfa = NFA(s0, s1)
 		nfa_stack.append(nfa)
+
+	def combine(self, nfa_dict):
+		s0 = self.create_state()
+		nfa_combined = NFA(s0, s0)
+		nfa_combined.end.is_end = False
+		for key in nfa_dict:
+			nfa = nfa_dict[key]
+			nfa.end.key = key
+			nfa_combined.start.epsilon.append(nfa.start)
+		return nfa_combined
