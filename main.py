@@ -2,6 +2,7 @@ from NFA import NFA
 from Rules import Rules
 from Handler import Handler
 from Tokenizer import Tokenizer
+from DefTokenizer import DefTokenizer
 
 rules = Rules('rules.txt')
 
@@ -16,15 +17,17 @@ for key in expressions:
 	tokenizer = Tokenizer(expressions[key])
 	tokens = tokenizer.get_tokens()
 	tokens_dict[key] = tokens
-	print key
-	for token in tokens:
-		print token
+
+def_tokens_dict = {}
 
 for key in definitions:
-	tokenizer = Tokenizer(definitions[key])
+	tokenizer = DefTokenizer(definitions[key])
 	tokens = tokenizer.get_tokens()
+	def_tokens_dict[key] = tokens
+
+for key in def_tokens_dict:
 	print key
-	for token in tokens:
+	for token in def_tokens_dict[key]:
 		print token
 
 nfa_dict = {}
