@@ -28,7 +28,7 @@ class Rules(object):
 					if(char == '{' and prev_char == None):
 						keywords = line.split(' ')
 						for keyword in keywords:
-							keyword = keyword.strip('{\}\n')
+							keyword = keyword.strip(r'{\}\n')
 							self.__keywords.append(keyword)
 						break
 					if(char == '[' and prev_char == None):

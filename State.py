@@ -6,3 +6,5 @@ class State(object):
 		self.name = name
 		self.is_end = False
 		self.key = True
+		self.nfa_corresponding_states = []
+		self.dfa_state_transitions = []

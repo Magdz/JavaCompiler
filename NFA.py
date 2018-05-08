@@ -27,3 +27,4 @@ class NFA(object):
 			if state.is_end:
 				return state.key
 		return False
+

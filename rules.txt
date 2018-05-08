@@ -1,15 +1,4 @@
-letter = a-z | A-Z
-digit = 0-9
-digits = digit+
-
-id:letter(letter|digit)*
-num: digit+ | digit+.digits(\L|E digits)
-
-relop: \=\= | !\= | > | >\= | < | <\=
 assign: =
 addop: \+ | -
 mulop: \* | /
 
-{boolean int float if else while}
-
-[; , \( \) { }]
