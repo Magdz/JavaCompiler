@@ -43,4 +43,6 @@ class CFG(object):
         for x in self.__productions:
             print('\033[92m' + x + " :" + '\033[0m')
             print(self.__productions[x])
-                # print (y,':',self.__productions[x][y])
+
+    def get_grammar(self):
+        return self.__productions
