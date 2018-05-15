@@ -26,6 +26,11 @@ class Parser(object):
                     if next_stage != None:
                         self.tree.insert(0, next_stage)
                         return stage
+            elif key == '\L':
+                del stage[index]
+            else:
+                if stage[index] != self.tokens[index]:
+                    return
 
 
     def __replace(self, stage, index, values):
