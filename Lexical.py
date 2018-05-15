@@ -6,8 +6,8 @@ from DefHandler import DefHandler
 from DefTokenizer import DefTokenizer
 
 class Lexical(object):
-	def __init__(self, rules, code = None):
-		self.rules = Rules('rules.txt')
+	def __init__(self, rulesFile, code = None):
+		self.rules = Rules(rulesFile)
 		self.expressions = self.rules.get_expressions()
 		self.definitions = self.rules.get_definitions()
 		self.keywords = self.rules.get_keywords()
