@@ -1,26 +1,10 @@
-# from CFG import CFG
+from CFG import CFG
 
 class Parser(object):
     def __init__(self, grammarFile):
         self.tree = []
-        # cfg = CFG(grammarFile)
-        # self.cfg = cfg.get_grammar()
-        self.cfg = {
-            'METHOD_BODY': [['LIST']],
-            'LIST': [['STAT'], ['LIST', 'STAT']],
-            'STAT': [['DECLA'], ['IF'], ['WHILE'], ['ASSIGNMENT']],
-            'DECLA': [['PRI_TYPE', 'id', ';']],
-            'PRI_TYPE': [['int'], ['float']],
-            'IF': [['if', '(', 'EXP', ')', '{', 'STAT', '}']],
-            'WHILE': [['while', '(', 'EXP', ')', '{', 'STAT', '}']],
-            'ASSIGNMENT': [['id', 'assign', 'EXP', ';']],
-            'EXP': [['SIM'], ['SIM', 'relop', 'SIM']],
-            'SIM': [['TERM'], ['SIGN', 'TERM'], ['SIM', 'addop', 'TERM']],
-            'TERM': [['FACTOR'], ['TERM', 'mulop', 'FACTOR']],
-            'FACTOR': [['id'], ['num'], ['(', 'EXP', ')']],
-            'SIGN': [['+'], ['-']]
-        }
-        pass
+        cfg = CFG(grammarFile)
+        self.cfg = cfg.get_grammar()
 
     def analyze(self, tokens):
         self.tokens = tokens
@@ -30,9 +14,6 @@ class Parser(object):
         return self.tree
 
     def __analyze(self, stage):
-        print stage
-        if stage == ['STAT', 'STAT', 'STAT']:
-            print stage
         if len(stage) > len(self.tokens):
             return
         if stage == self.tokens:

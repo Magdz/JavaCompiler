@@ -4,7 +4,6 @@ class CFG(object):
     def __init__(self, filename):
         self.__productions = {}
         self.__import(filename)
-        self.print_productions()
 
     def __import(self, filename):
         RHS = []
